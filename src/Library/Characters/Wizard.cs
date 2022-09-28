@@ -68,6 +68,6 @@ namespace RoleplayGame
         {
             this.magicalItems.Remove(item);
         }
-
+        
     }
 }
