@@ -6,24 +6,24 @@ namespace RoleplayGame
     {
         public Characters(string name)
         {
-            this.Name= name;
+            this.Name = name;
         }
-        
+
         private string name;
         public string Name
-    {
-        get
         {
-            return this.name;
-        }
-        set
-        {
-            if (!string.IsNullOrEmpty(value))
+            get
             {
-                this.name = value;
+                return this.name;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    this.name = value;
+                }
             }
         }
-    }
         private int health = 100;
         public int Health
         {
@@ -68,20 +68,8 @@ namespace RoleplayGame
                 return value;
             }
         }
+
         public List<IItem> items = new List<IItem>();
-
-        public void ReceiveAttack(int power)
-        {
-            if (this.DefenseValue < power)
-            {
-                this.Health -= power - this.DefenseValue;
-            }
-        }
-
-        public void Cure()
-        {
-            this.Health = 100;
-        }
 
         public void AddItem(IItem item)
         {
@@ -91,6 +79,62 @@ namespace RoleplayGame
         public void RemoveItem(IItem item)
         {
             this.items.Remove(item);
+        }
+
+        public void Cure()
+        {
+            this.Health = 100;
+        }
+
+        public void AttackDodged(Characters defender)
+        {
+            if (!Luck.Lucky())
+            {
+                if (defender.DefenseValue < this.AttackValue)
+                {
+                    defender.Health -= this.AttackValue - defender.DefenseValue;
+                }
+            }
+        }
+        public void Attack(Characters defender)
+        {
+            this.AttackDodged(defender);
+            defender.IsAlive();
+        }
+
+        public bool IsAlive()
+        {
+            if (this.Health <= 0)
+            {
+                this.items = null;
+                Transaction(false, this.Coins / 2);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public int Coins = 100;
+        public bool Transaction(bool operation, int value)
+        {
+            if (operation)
+            {
+                this.Coins += value;
+                return true;
+            }
+            else
+            {
+                if (value < this.Coins) //determina si la operacion es posible
+                {
+                    this.Coins -= value;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }

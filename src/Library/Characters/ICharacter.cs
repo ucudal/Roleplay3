@@ -16,7 +16,7 @@ namespace RoleplayGame
 
         void Cure();
 
-        void ReceiveAttack(int power);
+        void Attack(Characters defender);
     }
 }
 //  Se sigue usando?

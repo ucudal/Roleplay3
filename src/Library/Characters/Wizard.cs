@@ -3,8 +3,6 @@ namespace RoleplayGame
 {
     public class Wizard : Characters, IMagicCharacter
     {
-        private int health = 100;
-
         private List<IMagicalItem> magicalItems = new List<IMagicalItem>();
 
         public Wizard(string name)
@@ -20,14 +18,14 @@ namespace RoleplayGame
                 int value = 0;
                 foreach (IItem item in this.items)
                 {
-                    if (item is IDefenseItem)   //  Pregunta el tipo --> ¿corregir?
+                    if (item is IDefenseItem)   //  Pregunta por el tipo --> ¿corregir?
                     {
                         value += (item as IDefenseItem).DefenseValue;
                     }
                 }
                 foreach (IMagicalItem item in this.magicalItems)
                 {
-                    if (item is IMagicalAttackItem) //  Pregunta el tipo --> ¿corregir?
+                    if (item is IMagicalAttackItem) //  Pregunta por el tipo --> ¿corregir?
                     {
                         value += (item as IMagicalAttackItem).AttackValue;
                     }
@@ -43,14 +41,14 @@ namespace RoleplayGame
                 int value = 0;
                 foreach (IItem item in this.items)
                 {
-                    if (item is IDefenseItem)   //  Pregunta el tipo --> ¿corregir?
+                    if (item is IDefenseItem)   //  Pregunta por el tipo --> ¿corregir?
                     {
                         value += (item as IDefenseItem).DefenseValue;
                     }
                 }
                 foreach (IMagicalItem item in this.magicalItems)
                 {
-                    if (item is IMagicalDefenseItem)    //  Pregunta el tipo --> ¿corregir?
+                    if (item is IMagicalDefenseItem)    //  Pregunta por el tipo --> ¿corregir?
                     {
                         value += (item as IMagicalDefenseItem).DefenseValue;
                     }
@@ -68,6 +66,6 @@ namespace RoleplayGame
         {
             this.magicalItems.Remove(item);
         }
-        
+
     }
 }
