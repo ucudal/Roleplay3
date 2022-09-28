@@ -7,7 +7,18 @@ namespace RoleplayGame
             get
             {
                 return 15;
-            } 
+            }
+            set
+            {
+                this.AttackValue= 3*this.AttackValue/2;
+            }
+        }
+        public int EnchantmentCost
+        {
+            get
+            {
+                return 21;
+            }
         }
     }
 }

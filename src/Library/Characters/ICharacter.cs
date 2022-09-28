@@ -19,3 +19,4 @@ namespace RoleplayGame
         void ReceiveAttack(int power);
     }
 }
+//  Se sigue usando?
